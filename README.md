@@ -1,0 +1,4 @@
+RabbitMQFlumeSource
+===================
+
+RabbitMQ Flume Source

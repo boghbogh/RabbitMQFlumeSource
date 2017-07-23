@@ -1,0 +1,43 @@
+# Sources, channels, and sinks are defined per
+# agent name, in this case 'tier1'.
+tier1.sources  = source1 source2
+tier1.channels = channel1
+tier1.sinks    = sink1 sink2
+
+# For each source, channel, and sink, set
+# standard properties.
+tier1.sources.source1.type     = com.cloudera.sa.rabbitmq.flume.source.RabbitMqFlumeSource
+tier1.sources.source1.host     = tedmalaska-3.ent.cloudera.com
+tier1.sources.source1.port     = 5674
+tier1.sources.source1.queue    = jfqueue5
+tier1.sources.source1.channels = channel1
+# to memchannel
+tier1.sources.source1.batchSize = 100
+# from rabbit
+tier1.sources.source1.prefetchCount = 2000
+tier1.channels.channel1.type   = memory
+tier1.sinks.sink1.type         = null
+tier1.sinks.sink1.channel      = channel1
+tier1.sinks.sink1.batchSize    = 5000
+
+
+tier1.sources.source2.type     = com.cloudera.sa.rabbitmq.flume.source.RabbitMqFlumeSource
+tier1.sources.source2.host     = tedmalaska-3.ent.cloudera.com
+tier1.sources.source2.port     = 5674
+tier1.sources.source2.queue    = jfqueue5
+tier1.sources.source2.channels = channel1
+# to memchannel
+tier1.sources.source2.batchSize = 100
+# from rabbit
+tier1.sources.source2.prefetchCount = 2000
+tier1.channels.channel1.type   = memory
+tier1.sinks.sink2.type         = null
+tier1.sinks.sink2.channel      = channel1
+tier1.sinks.sink2.batchSize    = 5000
+
+
+# Other properties are specific to each type of
+# source, channel, or sink. In this case, we
+# specify the capacity of the memory channel.
+tier1.channels.channel1.capacity = 500000
+tier1.channels.channel1.transactionCapacity = 50000
